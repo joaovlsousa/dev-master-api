@@ -1,0 +1,17 @@
+@host=http://localhost:3333
+
+@token=
+
+###
+
+POST {{host}}/auth/github
+Content-Type: application/json
+
+{
+  "code": ""
+}
+
+###
+
+GET {{host}}/users/profile
+Authorization: Bearer {{token}}
