@@ -28,10 +28,21 @@ export async function createTeam(app: FastifyInstance) {
         const userId = await request.getCurrentUserId()
         const { name } = request.body
 
-        await prisma.team.create({
+        const team = await prisma.team.create({
           data: {
             name,
             ownerId: userId,
+          },
+          select: {
+            id: true,
+          },
+        })
+
+        await prisma.member.create({
+          data: {
+            role: 'OWNER',
+            teamId: team.id,
+            userId,
           },
         })
 
