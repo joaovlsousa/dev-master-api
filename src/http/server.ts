@@ -15,6 +15,9 @@ import { env } from '@/config/env'
 import { errorHandler } from './error-handler'
 import { authenticateWithGithub } from './routes/auth/authenticate-with-github'
 import { getProfile } from './routes/auth/get-profile'
+import { createTeam } from './routes/teams/create-team'
+import { deleteTeam } from './routes/teams/delete-team'
+import { getTeams } from './routes/teams/get-teams'
 
 const app = fastify().withTypeProvider<ZodTypeProvider>()
 
@@ -53,6 +56,10 @@ app.register(fastifyCors)
 
 app.register(authenticateWithGithub)
 app.register(getProfile)
+
+app.register(createTeam)
+app.register(getTeams)
+app.register(deleteTeam)
 
 app.listen({ port: env.PORT, host: '0.0.0.0' }).then(() => {
   console.log('HTTP server running!')

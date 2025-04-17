@@ -17,7 +17,7 @@ export const auth = fastifyPlugin(async (app: FastifyInstance) => {
       }
     }
 
-    request.getUserIsTeamOwner = async (teamId: string) => {
+    request.verifyUserIsTeamOwner = async (teamId: string) => {
       const userId = await request.getCurrentUserId()
 
       const team = await prisma.team.findUnique({
@@ -30,7 +30,11 @@ export const auth = fastifyPlugin(async (app: FastifyInstance) => {
         throw new NotFoundError('Equipe não encontrada')
       }
 
-      return team.ownerId === userId
+      if (team.ownerId !== userId) {
+        throw new UnauthorizedError(
+          'Você não tem permissão para realizar essa ação'
+        )
+      }
     }
   })
 })
