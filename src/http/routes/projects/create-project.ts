@@ -5,37 +5,44 @@ import { z } from 'zod'
 import { auth } from '@/http/middlewares/auth'
 import { prisma } from '@/lib/prisma'
 
-export async function deleteTeam(app: FastifyInstance) {
+export async function createProject(app: FastifyInstance) {
   app
     .withTypeProvider<ZodTypeProvider>()
     .register(auth)
-    .delete(
-      '/teams/:teamId',
+    .post(
+      '/teams/:teamId/projects',
       {
         schema: {
-          tags: ['Teams'],
-          summary: 'Delete a team',
+          tags: ['Projects'],
+          summary: 'Create a project',
           security: [{ bearerAuth: [] }],
           params: z.object({
             teamId: z.string().cuid(),
           }),
+          body: z.object({
+            name: z.string(),
+            description: z.string(),
+          }),
           response: {
-            204: z.null(),
+            201: z.null(),
           },
         },
       },
       async (request, reply) => {
         const { teamId } = request.params
+        const { name, description } = request.body
 
         await request.verifyUserIsTeamOwner(teamId)
 
-        await prisma.team.delete({
-          where: {
-            id: teamId,
+        await prisma.project.create({
+          data: {
+            name,
+            description,
+            ownerId: teamId,
           },
         })
 
-        return reply.status(204).send()
+        return reply.status(201).send()
       }
     )
 }
