@@ -1748,7 +1748,7 @@ export namespace Prisma {
 
   export type UserGroupByOutputType = {
     id: string
-    name: string
+    name: string | null
     email: string
     avatarUrl: string
     createdAt: Date
@@ -1829,7 +1829,7 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
-      name: string
+      name: string | null
       email: string
       avatarUrl: string
       createdAt: Date
@@ -9523,7 +9523,7 @@ export namespace Prisma {
     OR?: UserWhereInput[]
     NOT?: UserWhereInput | UserWhereInput[]
     id?: StringFilter<"User"> | string
-    name?: StringFilter<"User"> | string
+    name?: StringNullableFilter<"User"> | string | null
     email?: StringFilter<"User"> | string
     avatarUrl?: StringFilter<"User"> | string
     createdAt?: DateTimeFilter<"User"> | Date | string
@@ -9535,7 +9535,7 @@ export namespace Prisma {
 
   export type UserOrderByWithRelationInput = {
     id?: SortOrder
-    name?: SortOrder
+    name?: SortOrderInput | SortOrder
     email?: SortOrder
     avatarUrl?: SortOrder
     createdAt?: SortOrder
@@ -9551,7 +9551,7 @@ export namespace Prisma {
     AND?: UserWhereInput | UserWhereInput[]
     OR?: UserWhereInput[]
     NOT?: UserWhereInput | UserWhereInput[]
-    name?: StringFilter<"User"> | string
+    name?: StringNullableFilter<"User"> | string | null
     avatarUrl?: StringFilter<"User"> | string
     createdAt?: DateTimeFilter<"User"> | Date | string
     teams?: TeamListRelationFilter
@@ -9562,7 +9562,7 @@ export namespace Prisma {
 
   export type UserOrderByWithAggregationInput = {
     id?: SortOrder
-    name?: SortOrder
+    name?: SortOrderInput | SortOrder
     email?: SortOrder
     avatarUrl?: SortOrder
     createdAt?: SortOrder
@@ -9576,7 +9576,7 @@ export namespace Prisma {
     OR?: UserScalarWhereWithAggregatesInput[]
     NOT?: UserScalarWhereWithAggregatesInput | UserScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"User"> | string
-    name?: StringWithAggregatesFilter<"User"> | string
+    name?: StringNullableWithAggregatesFilter<"User"> | string | null
     email?: StringWithAggregatesFilter<"User"> | string
     avatarUrl?: StringWithAggregatesFilter<"User"> | string
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
@@ -9945,10 +9945,10 @@ export namespace Prisma {
 
   export type UserCreateInput = {
     id?: string
-    name: string
+    name?: string | null
     email: string
     avatarUrl: string
-    createdAt: Date | string
+    createdAt?: Date | string
     teams?: TeamCreateNestedManyWithoutOwnerInput
     members?: MemberCreateNestedManyWithoutUserInput
     tasks?: TaskCreateNestedManyWithoutMemberInput
@@ -9957,10 +9957,10 @@ export namespace Prisma {
 
   export type UserUncheckedCreateInput = {
     id?: string
-    name: string
+    name?: string | null
     email: string
     avatarUrl: string
-    createdAt: Date | string
+    createdAt?: Date | string
     teams?: TeamUncheckedCreateNestedManyWithoutOwnerInput
     members?: MemberUncheckedCreateNestedManyWithoutUserInput
     tasks?: TaskUncheckedCreateNestedManyWithoutMemberInput
@@ -9969,7 +9969,7 @@ export namespace Prisma {
 
   export type UserUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
     avatarUrl?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -9981,7 +9981,7 @@ export namespace Prisma {
 
   export type UserUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
     avatarUrl?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -9993,15 +9993,15 @@ export namespace Prisma {
 
   export type UserCreateManyInput = {
     id?: string
-    name: string
+    name?: string | null
     email: string
     avatarUrl: string
-    createdAt: Date | string
+    createdAt?: Date | string
   }
 
   export type UserUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
     avatarUrl?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10009,7 +10009,7 @@ export namespace Prisma {
 
   export type UserUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
     avatarUrl?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10018,7 +10018,7 @@ export namespace Prisma {
   export type TeamCreateInput = {
     id?: string
     name: string
-    createdAt: Date | string
+    createdAt?: Date | string
     owner: UserCreateNestedOneWithoutTeamsInput
     members?: MemberCreateNestedManyWithoutTeamInput
     projects?: ProjectCreateNestedManyWithoutOwnerInput
@@ -10029,7 +10029,7 @@ export namespace Prisma {
     id?: string
     name: string
     ownerId: string
-    createdAt: Date | string
+    createdAt?: Date | string
     members?: MemberUncheckedCreateNestedManyWithoutTeamInput
     projects?: ProjectUncheckedCreateNestedManyWithoutOwnerInput
     invites?: InviteUncheckedCreateNestedManyWithoutTeamInput
@@ -10059,7 +10059,7 @@ export namespace Prisma {
     id?: string
     name: string
     ownerId: string
-    createdAt: Date | string
+    createdAt?: Date | string
   }
 
   export type TeamUpdateManyMutationInput = {
@@ -10078,7 +10078,7 @@ export namespace Prisma {
   export type MemberCreateInput = {
     id?: string
     role?: $Enums.Role
-    createdAt: Date | string
+    createdAt?: Date | string
     user: UserCreateNestedOneWithoutMembersInput
     team: TeamCreateNestedOneWithoutMembersInput
   }
@@ -10088,7 +10088,7 @@ export namespace Prisma {
     role?: $Enums.Role
     userId: string
     teamId: string
-    createdAt: Date | string
+    createdAt?: Date | string
   }
 
   export type MemberUpdateInput = {
@@ -10112,7 +10112,7 @@ export namespace Prisma {
     role?: $Enums.Role
     userId: string
     teamId: string
-    createdAt: Date | string
+    createdAt?: Date | string
   }
 
   export type MemberUpdateManyMutationInput = {
@@ -10133,7 +10133,7 @@ export namespace Prisma {
     id?: string
     name: string
     description: string
-    createdAt: Date | string
+    createdAt?: Date | string
     owner: TeamCreateNestedOneWithoutProjectsInput
     tasks?: TaskCreateNestedManyWithoutProjectInput
   }
@@ -10143,7 +10143,7 @@ export namespace Prisma {
     name: string
     description: string
     ownerId: string
-    createdAt: Date | string
+    createdAt?: Date | string
     tasks?: TaskUncheckedCreateNestedManyWithoutProjectInput
   }
 
@@ -10170,7 +10170,7 @@ export namespace Prisma {
     name: string
     description: string
     ownerId: string
-    createdAt: Date | string
+    createdAt?: Date | string
   }
 
   export type ProjectUpdateManyMutationInput = {
@@ -10191,7 +10191,7 @@ export namespace Prisma {
   export type TaskCreateInput = {
     id?: string
     description: string
-    createdAt: Date | string
+    createdAt?: Date | string
     member?: UserCreateNestedOneWithoutTasksInput
     project: ProjectCreateNestedOneWithoutTasksInput
     subTasks?: SubTaskCreateNestedManyWithoutTaskInput
@@ -10202,7 +10202,7 @@ export namespace Prisma {
     description: string
     memberId?: string | null
     projectId: string
-    createdAt: Date | string
+    createdAt?: Date | string
     subTasks?: SubTaskUncheckedCreateNestedManyWithoutTaskInput
   }
 
@@ -10229,7 +10229,7 @@ export namespace Prisma {
     description: string
     memberId?: string | null
     projectId: string
-    createdAt: Date | string
+    createdAt?: Date | string
   }
 
   export type TaskUpdateManyMutationInput = {
@@ -10250,7 +10250,7 @@ export namespace Prisma {
     id?: string
     description: string
     isDone?: boolean
-    createdAt: Date | string
+    createdAt?: Date | string
     task: TaskCreateNestedOneWithoutSubTasksInput
   }
 
@@ -10259,7 +10259,7 @@ export namespace Prisma {
     description: string
     isDone?: boolean
     taskId: string
-    createdAt: Date | string
+    createdAt?: Date | string
   }
 
   export type SubTaskUpdateInput = {
@@ -10283,7 +10283,7 @@ export namespace Prisma {
     description: string
     isDone?: boolean
     taskId: string
-    createdAt: Date | string
+    createdAt?: Date | string
   }
 
   export type SubTaskUpdateManyMutationInput = {
@@ -10306,7 +10306,7 @@ export namespace Prisma {
     guestEmail: string
     role?: $Enums.Role
     status?: $Enums.InviteStatus
-    createdAt: Date | string
+    createdAt?: Date | string
     author: UserCreateNestedOneWithoutInvitesInput
     team: TeamCreateNestedOneWithoutInvitesInput
   }
@@ -10318,7 +10318,7 @@ export namespace Prisma {
     status?: $Enums.InviteStatus
     authorId: string
     teamId: string
-    createdAt: Date | string
+    createdAt?: Date | string
   }
 
   export type InviteUpdateInput = {
@@ -10348,7 +10348,7 @@ export namespace Prisma {
     status?: $Enums.InviteStatus
     authorId: string
     teamId: string
-    createdAt: Date | string
+    createdAt?: Date | string
   }
 
   export type InviteUpdateManyMutationInput = {
@@ -10384,6 +10384,21 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
+  export type StringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
   export type DateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -10417,6 +10432,11 @@ export namespace Prisma {
     every?: InviteWhereInput
     some?: InviteWhereInput
     none?: InviteWhereInput
+  }
+
+  export type SortOrderInput = {
+    sort: SortOrder
+    nulls?: NullsOrder
   }
 
   export type TeamOrderByRelationAggregateInput = {
@@ -10475,6 +10495,24 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedStringFilter<$PrismaModel>
     _max?: NestedStringFilter<$PrismaModel>
+  }
+
+  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -10602,21 +10640,6 @@ export namespace Prisma {
     createdAt?: SortOrder
   }
 
-  export type StringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
-  }
-
   export type UserNullableScalarRelationFilter = {
     is?: UserWhereInput | null
     isNot?: UserWhereInput | null
@@ -10631,11 +10654,6 @@ export namespace Prisma {
     every?: SubTaskWhereInput
     some?: SubTaskWhereInput
     none?: SubTaskWhereInput
-  }
-
-  export type SortOrderInput = {
-    sort: SortOrder
-    nulls?: NullsOrder
   }
 
   export type SubTaskOrderByRelationAggregateInput = {
@@ -10664,24 +10682,6 @@ export namespace Prisma {
     memberId?: SortOrder
     projectId?: SortOrder
     createdAt?: SortOrder
-  }
-
-  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedStringNullableFilter<$PrismaModel>
-    _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
   export type BoolFilter<$PrismaModel = never> = {
@@ -10836,6 +10836,10 @@ export namespace Prisma {
 
   export type StringFieldUpdateOperationsInput = {
     set?: string
+  }
+
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
   }
 
   export type DateTimeFieldUpdateOperationsInput = {
@@ -11240,10 +11244,6 @@ export namespace Prisma {
     deleteMany?: SubTaskScalarWhereInput | SubTaskScalarWhereInput[]
   }
 
-  export type NullableStringFieldUpdateOperationsInput = {
-    set?: string | null
-  }
-
   export type SubTaskUncheckedUpdateManyWithoutTaskNestedInput = {
     create?: XOR<SubTaskCreateWithoutTaskInput, SubTaskUncheckedCreateWithoutTaskInput> | SubTaskCreateWithoutTaskInput[] | SubTaskUncheckedCreateWithoutTaskInput[]
     connectOrCreate?: SubTaskCreateOrConnectWithoutTaskInput | SubTaskCreateOrConnectWithoutTaskInput[]
@@ -11322,6 +11322,20 @@ export namespace Prisma {
     not?: NestedStringFilter<$PrismaModel> | string
   }
 
+  export type NestedStringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
   export type NestedDateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -11361,6 +11375,34 @@ export namespace Prisma {
     not?: NestedIntFilter<$PrismaModel> | number
   }
 
+  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -11390,48 +11432,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumRoleFilter<$PrismaModel>
     _max?: NestedEnumRoleFilter<$PrismaModel>
-  }
-
-  export type NestedStringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
-  }
-
-  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedStringNullableFilter<$PrismaModel>
-    _max?: NestedStringNullableFilter<$PrismaModel>
-  }
-
-  export type NestedIntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
   }
 
   export type NestedBoolFilter<$PrismaModel = never> = {
@@ -11467,7 +11467,7 @@ export namespace Prisma {
   export type TeamCreateWithoutOwnerInput = {
     id?: string
     name: string
-    createdAt: Date | string
+    createdAt?: Date | string
     members?: MemberCreateNestedManyWithoutTeamInput
     projects?: ProjectCreateNestedManyWithoutOwnerInput
     invites?: InviteCreateNestedManyWithoutTeamInput
@@ -11476,7 +11476,7 @@ export namespace Prisma {
   export type TeamUncheckedCreateWithoutOwnerInput = {
     id?: string
     name: string
-    createdAt: Date | string
+    createdAt?: Date | string
     members?: MemberUncheckedCreateNestedManyWithoutTeamInput
     projects?: ProjectUncheckedCreateNestedManyWithoutOwnerInput
     invites?: InviteUncheckedCreateNestedManyWithoutTeamInput
@@ -11495,7 +11495,7 @@ export namespace Prisma {
   export type MemberCreateWithoutUserInput = {
     id?: string
     role?: $Enums.Role
-    createdAt: Date | string
+    createdAt?: Date | string
     team: TeamCreateNestedOneWithoutMembersInput
   }
 
@@ -11503,7 +11503,7 @@ export namespace Prisma {
     id?: string
     role?: $Enums.Role
     teamId: string
-    createdAt: Date | string
+    createdAt?: Date | string
   }
 
   export type MemberCreateOrConnectWithoutUserInput = {
@@ -11519,7 +11519,7 @@ export namespace Prisma {
   export type TaskCreateWithoutMemberInput = {
     id?: string
     description: string
-    createdAt: Date | string
+    createdAt?: Date | string
     project: ProjectCreateNestedOneWithoutTasksInput
     subTasks?: SubTaskCreateNestedManyWithoutTaskInput
   }
@@ -11528,7 +11528,7 @@ export namespace Prisma {
     id?: string
     description: string
     projectId: string
-    createdAt: Date | string
+    createdAt?: Date | string
     subTasks?: SubTaskUncheckedCreateNestedManyWithoutTaskInput
   }
 
@@ -11547,7 +11547,7 @@ export namespace Prisma {
     guestEmail: string
     role?: $Enums.Role
     status?: $Enums.InviteStatus
-    createdAt: Date | string
+    createdAt?: Date | string
     team: TeamCreateNestedOneWithoutInvitesInput
   }
 
@@ -11557,7 +11557,7 @@ export namespace Prisma {
     role?: $Enums.Role
     status?: $Enums.InviteStatus
     teamId: string
-    createdAt: Date | string
+    createdAt?: Date | string
   }
 
   export type InviteCreateOrConnectWithoutAuthorInput = {
@@ -11681,10 +11681,10 @@ export namespace Prisma {
 
   export type UserCreateWithoutTeamsInput = {
     id?: string
-    name: string
+    name?: string | null
     email: string
     avatarUrl: string
-    createdAt: Date | string
+    createdAt?: Date | string
     members?: MemberCreateNestedManyWithoutUserInput
     tasks?: TaskCreateNestedManyWithoutMemberInput
     invites?: InviteCreateNestedManyWithoutAuthorInput
@@ -11692,10 +11692,10 @@ export namespace Prisma {
 
   export type UserUncheckedCreateWithoutTeamsInput = {
     id?: string
-    name: string
+    name?: string | null
     email: string
     avatarUrl: string
-    createdAt: Date | string
+    createdAt?: Date | string
     members?: MemberUncheckedCreateNestedManyWithoutUserInput
     tasks?: TaskUncheckedCreateNestedManyWithoutMemberInput
     invites?: InviteUncheckedCreateNestedManyWithoutAuthorInput
@@ -11709,7 +11709,7 @@ export namespace Prisma {
   export type MemberCreateWithoutTeamInput = {
     id?: string
     role?: $Enums.Role
-    createdAt: Date | string
+    createdAt?: Date | string
     user: UserCreateNestedOneWithoutMembersInput
   }
 
@@ -11717,7 +11717,7 @@ export namespace Prisma {
     id?: string
     role?: $Enums.Role
     userId: string
-    createdAt: Date | string
+    createdAt?: Date | string
   }
 
   export type MemberCreateOrConnectWithoutTeamInput = {
@@ -11734,7 +11734,7 @@ export namespace Prisma {
     id?: string
     name: string
     description: string
-    createdAt: Date | string
+    createdAt?: Date | string
     tasks?: TaskCreateNestedManyWithoutProjectInput
   }
 
@@ -11742,7 +11742,7 @@ export namespace Prisma {
     id?: string
     name: string
     description: string
-    createdAt: Date | string
+    createdAt?: Date | string
     tasks?: TaskUncheckedCreateNestedManyWithoutProjectInput
   }
 
@@ -11761,7 +11761,7 @@ export namespace Prisma {
     guestEmail: string
     role?: $Enums.Role
     status?: $Enums.InviteStatus
-    createdAt: Date | string
+    createdAt?: Date | string
     author: UserCreateNestedOneWithoutInvitesInput
   }
 
@@ -11771,7 +11771,7 @@ export namespace Prisma {
     role?: $Enums.Role
     status?: $Enums.InviteStatus
     authorId: string
-    createdAt: Date | string
+    createdAt?: Date | string
   }
 
   export type InviteCreateOrConnectWithoutTeamInput = {
@@ -11797,7 +11797,7 @@ export namespace Prisma {
 
   export type UserUpdateWithoutTeamsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
     avatarUrl?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -11808,7 +11808,7 @@ export namespace Prisma {
 
   export type UserUncheckedUpdateWithoutTeamsInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
     avatarUrl?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -11878,10 +11878,10 @@ export namespace Prisma {
 
   export type UserCreateWithoutMembersInput = {
     id?: string
-    name: string
+    name?: string | null
     email: string
     avatarUrl: string
-    createdAt: Date | string
+    createdAt?: Date | string
     teams?: TeamCreateNestedManyWithoutOwnerInput
     tasks?: TaskCreateNestedManyWithoutMemberInput
     invites?: InviteCreateNestedManyWithoutAuthorInput
@@ -11889,10 +11889,10 @@ export namespace Prisma {
 
   export type UserUncheckedCreateWithoutMembersInput = {
     id?: string
-    name: string
+    name?: string | null
     email: string
     avatarUrl: string
-    createdAt: Date | string
+    createdAt?: Date | string
     teams?: TeamUncheckedCreateNestedManyWithoutOwnerInput
     tasks?: TaskUncheckedCreateNestedManyWithoutMemberInput
     invites?: InviteUncheckedCreateNestedManyWithoutAuthorInput
@@ -11906,7 +11906,7 @@ export namespace Prisma {
   export type TeamCreateWithoutMembersInput = {
     id?: string
     name: string
-    createdAt: Date | string
+    createdAt?: Date | string
     owner: UserCreateNestedOneWithoutTeamsInput
     projects?: ProjectCreateNestedManyWithoutOwnerInput
     invites?: InviteCreateNestedManyWithoutTeamInput
@@ -11916,7 +11916,7 @@ export namespace Prisma {
     id?: string
     name: string
     ownerId: string
-    createdAt: Date | string
+    createdAt?: Date | string
     projects?: ProjectUncheckedCreateNestedManyWithoutOwnerInput
     invites?: InviteUncheckedCreateNestedManyWithoutTeamInput
   }
@@ -11939,7 +11939,7 @@ export namespace Prisma {
 
   export type UserUpdateWithoutMembersInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
     avatarUrl?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -11950,7 +11950,7 @@ export namespace Prisma {
 
   export type UserUncheckedUpdateWithoutMembersInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
     avatarUrl?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -11991,7 +11991,7 @@ export namespace Prisma {
   export type TeamCreateWithoutProjectsInput = {
     id?: string
     name: string
-    createdAt: Date | string
+    createdAt?: Date | string
     owner: UserCreateNestedOneWithoutTeamsInput
     members?: MemberCreateNestedManyWithoutTeamInput
     invites?: InviteCreateNestedManyWithoutTeamInput
@@ -12001,7 +12001,7 @@ export namespace Prisma {
     id?: string
     name: string
     ownerId: string
-    createdAt: Date | string
+    createdAt?: Date | string
     members?: MemberUncheckedCreateNestedManyWithoutTeamInput
     invites?: InviteUncheckedCreateNestedManyWithoutTeamInput
   }
@@ -12014,7 +12014,7 @@ export namespace Prisma {
   export type TaskCreateWithoutProjectInput = {
     id?: string
     description: string
-    createdAt: Date | string
+    createdAt?: Date | string
     member?: UserCreateNestedOneWithoutTasksInput
     subTasks?: SubTaskCreateNestedManyWithoutTaskInput
   }
@@ -12023,7 +12023,7 @@ export namespace Prisma {
     id?: string
     description: string
     memberId?: string | null
-    createdAt: Date | string
+    createdAt?: Date | string
     subTasks?: SubTaskUncheckedCreateNestedManyWithoutTaskInput
   }
 
@@ -12084,10 +12084,10 @@ export namespace Prisma {
 
   export type UserCreateWithoutTasksInput = {
     id?: string
-    name: string
+    name?: string | null
     email: string
     avatarUrl: string
-    createdAt: Date | string
+    createdAt?: Date | string
     teams?: TeamCreateNestedManyWithoutOwnerInput
     members?: MemberCreateNestedManyWithoutUserInput
     invites?: InviteCreateNestedManyWithoutAuthorInput
@@ -12095,10 +12095,10 @@ export namespace Prisma {
 
   export type UserUncheckedCreateWithoutTasksInput = {
     id?: string
-    name: string
+    name?: string | null
     email: string
     avatarUrl: string
-    createdAt: Date | string
+    createdAt?: Date | string
     teams?: TeamUncheckedCreateNestedManyWithoutOwnerInput
     members?: MemberUncheckedCreateNestedManyWithoutUserInput
     invites?: InviteUncheckedCreateNestedManyWithoutAuthorInput
@@ -12113,7 +12113,7 @@ export namespace Prisma {
     id?: string
     name: string
     description: string
-    createdAt: Date | string
+    createdAt?: Date | string
     owner: TeamCreateNestedOneWithoutProjectsInput
   }
 
@@ -12122,7 +12122,7 @@ export namespace Prisma {
     name: string
     description: string
     ownerId: string
-    createdAt: Date | string
+    createdAt?: Date | string
   }
 
   export type ProjectCreateOrConnectWithoutTasksInput = {
@@ -12134,14 +12134,14 @@ export namespace Prisma {
     id?: string
     description: string
     isDone?: boolean
-    createdAt: Date | string
+    createdAt?: Date | string
   }
 
   export type SubTaskUncheckedCreateWithoutTaskInput = {
     id?: string
     description: string
     isDone?: boolean
-    createdAt: Date | string
+    createdAt?: Date | string
   }
 
   export type SubTaskCreateOrConnectWithoutTaskInput = {
@@ -12167,7 +12167,7 @@ export namespace Prisma {
 
   export type UserUpdateWithoutTasksInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
     avatarUrl?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -12178,7 +12178,7 @@ export namespace Prisma {
 
   export type UserUncheckedUpdateWithoutTasksInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
     avatarUrl?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -12244,7 +12244,7 @@ export namespace Prisma {
   export type TaskCreateWithoutSubTasksInput = {
     id?: string
     description: string
-    createdAt: Date | string
+    createdAt?: Date | string
     member?: UserCreateNestedOneWithoutTasksInput
     project: ProjectCreateNestedOneWithoutTasksInput
   }
@@ -12254,7 +12254,7 @@ export namespace Prisma {
     description: string
     memberId?: string | null
     projectId: string
-    createdAt: Date | string
+    createdAt?: Date | string
   }
 
   export type TaskCreateOrConnectWithoutSubTasksInput = {
@@ -12291,10 +12291,10 @@ export namespace Prisma {
 
   export type UserCreateWithoutInvitesInput = {
     id?: string
-    name: string
+    name?: string | null
     email: string
     avatarUrl: string
-    createdAt: Date | string
+    createdAt?: Date | string
     teams?: TeamCreateNestedManyWithoutOwnerInput
     members?: MemberCreateNestedManyWithoutUserInput
     tasks?: TaskCreateNestedManyWithoutMemberInput
@@ -12302,10 +12302,10 @@ export namespace Prisma {
 
   export type UserUncheckedCreateWithoutInvitesInput = {
     id?: string
-    name: string
+    name?: string | null
     email: string
     avatarUrl: string
-    createdAt: Date | string
+    createdAt?: Date | string
     teams?: TeamUncheckedCreateNestedManyWithoutOwnerInput
     members?: MemberUncheckedCreateNestedManyWithoutUserInput
     tasks?: TaskUncheckedCreateNestedManyWithoutMemberInput
@@ -12319,7 +12319,7 @@ export namespace Prisma {
   export type TeamCreateWithoutInvitesInput = {
     id?: string
     name: string
-    createdAt: Date | string
+    createdAt?: Date | string
     owner: UserCreateNestedOneWithoutTeamsInput
     members?: MemberCreateNestedManyWithoutTeamInput
     projects?: ProjectCreateNestedManyWithoutOwnerInput
@@ -12329,7 +12329,7 @@ export namespace Prisma {
     id?: string
     name: string
     ownerId: string
-    createdAt: Date | string
+    createdAt?: Date | string
     members?: MemberUncheckedCreateNestedManyWithoutTeamInput
     projects?: ProjectUncheckedCreateNestedManyWithoutOwnerInput
   }
@@ -12352,7 +12352,7 @@ export namespace Prisma {
 
   export type UserUpdateWithoutInvitesInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
     avatarUrl?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -12363,7 +12363,7 @@ export namespace Prisma {
 
   export type UserUncheckedUpdateWithoutInvitesInput = {
     id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
     email?: StringFieldUpdateOperationsInput | string
     avatarUrl?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -12404,21 +12404,21 @@ export namespace Prisma {
   export type TeamCreateManyOwnerInput = {
     id?: string
     name: string
-    createdAt: Date | string
+    createdAt?: Date | string
   }
 
   export type MemberCreateManyUserInput = {
     id?: string
     role?: $Enums.Role
     teamId: string
-    createdAt: Date | string
+    createdAt?: Date | string
   }
 
   export type TaskCreateManyMemberInput = {
     id?: string
     description: string
     projectId: string
-    createdAt: Date | string
+    createdAt?: Date | string
   }
 
   export type InviteCreateManyAuthorInput = {
@@ -12427,7 +12427,7 @@ export namespace Prisma {
     role?: $Enums.Role
     status?: $Enums.InviteStatus
     teamId: string
-    createdAt: Date | string
+    createdAt?: Date | string
   }
 
   export type TeamUpdateWithoutOwnerInput = {
@@ -12529,14 +12529,14 @@ export namespace Prisma {
     id?: string
     role?: $Enums.Role
     userId: string
-    createdAt: Date | string
+    createdAt?: Date | string
   }
 
   export type ProjectCreateManyOwnerInput = {
     id?: string
     name: string
     description: string
-    createdAt: Date | string
+    createdAt?: Date | string
   }
 
   export type InviteCreateManyTeamInput = {
@@ -12545,7 +12545,7 @@ export namespace Prisma {
     role?: $Enums.Role
     status?: $Enums.InviteStatus
     authorId: string
-    createdAt: Date | string
+    createdAt?: Date | string
   }
 
   export type MemberUpdateWithoutTeamInput = {
@@ -12623,7 +12623,7 @@ export namespace Prisma {
     id?: string
     description: string
     memberId?: string | null
-    createdAt: Date | string
+    createdAt?: Date | string
   }
 
   export type TaskUpdateWithoutProjectInput = {
@@ -12653,7 +12653,7 @@ export namespace Prisma {
     id?: string
     description: string
     isDone?: boolean
-    createdAt: Date | string
+    createdAt?: Date | string
   }
 
   export type SubTaskUpdateWithoutTaskInput = {
