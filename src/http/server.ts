@@ -16,6 +16,7 @@ import { errorHandler } from './error-handler'
 import { authenticateWithGithub } from './routes/auth/authenticate-with-github'
 import { getProfile } from './routes/auth/get-profile'
 import { createProject } from './routes/projects/create-project'
+import { getProjects } from './routes/projects/get-projects'
 import { updateProject } from './routes/projects/update-project'
 import { createTeam } from './routes/teams/create-team'
 import { deleteTeam } from './routes/teams/delete-team'
@@ -64,6 +65,7 @@ app.register(getTeams)
 app.register(deleteTeam)
 
 app.register(createProject)
+app.register(getProjects)
 app.register(updateProject)
 
 app.listen({ port: env.PORT, host: '0.0.0.0' }).then(() => {
