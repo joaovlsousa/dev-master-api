@@ -1,12 +1,13 @@
 import type { FastifyInstance } from 'fastify'
 import { fastifyPlugin } from 'fastify-plugin'
 
+import { ForbiddenError } from '@/http/routes/_errors/forbidden-error'
 import { NotFoundError } from '@/http/routes/_errors/not-found-error'
 import { UnauthorizedError } from '@/http/routes/_errors/unauthorized-error'
 import { prisma } from '@/lib/prisma'
 
 export const auth = fastifyPlugin(async (app: FastifyInstance) => {
-  app.addHook('preHandler', async request => {
+  app.addHook('preHandler', async (request) => {
     request.getCurrentUserId = async () => {
       try {
         const { sub } = await request.jwtVerify<{ sub: string }>()
@@ -31,7 +32,7 @@ export const auth = fastifyPlugin(async (app: FastifyInstance) => {
       }
 
       if (team.ownerId !== userId) {
-        throw new UnauthorizedError(
+        throw new ForbiddenError(
           'Você não tem permissão para realizar essa ação'
         )
       }

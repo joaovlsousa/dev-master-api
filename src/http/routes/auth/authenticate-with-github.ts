@@ -101,7 +101,9 @@ export async function authenticateWithGithub(app: FastifyInstance) {
           )
           .parse(githubUserEmailsData)
 
-        const githubUserEmail = githubUserEmails.find(emails => emails.primary)
+        const githubUserEmail = githubUserEmails.find(
+          (emails) => emails.primary
+        )
 
         if (!githubUserEmail) {
           throw new BadRequestError(

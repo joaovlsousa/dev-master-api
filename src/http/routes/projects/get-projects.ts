@@ -5,24 +5,28 @@ import { z } from 'zod'
 import { auth } from '@/http/middlewares/auth'
 import { prisma } from '@/lib/prisma'
 
-export async function getTeams(app: FastifyInstance) {
+export async function getProjects(app: FastifyInstance) {
   app
     .withTypeProvider<ZodTypeProvider>()
     .register(auth)
     .get(
-      '/teams',
+      '/teams/:teamId/projects',
       {
         schema: {
-          tags: ['Teams'],
-          summary: 'Get teams',
+          tags: ['Projects'],
+          summary: 'Get all team projects',
           security: [{ bearerAuth: [] }],
+          params: z.object({
+            teamId: z.string().cuid(),
+          }),
           response: {
             200: z.object({
-              teams: z.array(
+              projects: z.array(
                 z.object({
                   id: z.string().cuid(),
                   name: z.string(),
-                  isOwner: z.boolean(),
+                  description: z.string(),
+                  createdAt: z.date(),
                 })
               ),
             }),
@@ -30,32 +34,24 @@ export async function getTeams(app: FastifyInstance) {
         },
       },
       async (request) => {
-        const userId = await request.getCurrentUserId()
+        const { teamId } = request.params
 
-        const teamsWithOwnerId = await prisma.team.findMany({
+        const projects = await prisma.project.findMany({
           select: {
             id: true,
             name: true,
-            ownerId: true,
+            description: true,
+            createdAt: true,
           },
           where: {
-            members: {
-              some: {
-                userId,
-              },
-            },
+            ownerId: teamId,
+          },
+          orderBy: {
+            createdAt: 'desc',
           },
         })
 
-        const teams = teamsWithOwnerId.map((team) => {
-          return {
-            id: team.id,
-            name: team.name,
-            isOwner: team.ownerId === userId,
-          }
-        })
-
-        return { teams }
+        return { projects }
       }
     )
 }
