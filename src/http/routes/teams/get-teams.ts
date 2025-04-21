@@ -29,7 +29,7 @@ export async function getTeams(app: FastifyInstance) {
           },
         },
       },
-      async request => {
+      async (request) => {
         const userId = await request.getCurrentUserId()
 
         const teamsWithOwnerId = await prisma.team.findMany({
@@ -47,7 +47,7 @@ export async function getTeams(app: FastifyInstance) {
           },
         })
 
-        const teams = teamsWithOwnerId.map(team => {
+        const teams = teamsWithOwnerId.map((team) => {
           return {
             id: team.id,
             name: team.name,

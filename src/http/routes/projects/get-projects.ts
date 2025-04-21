@@ -33,7 +33,7 @@ export async function getProjects(app: FastifyInstance) {
           },
         },
       },
-      async request => {
+      async (request) => {
         const { teamId } = request.params
 
         const projects = await prisma.project.findMany({
