@@ -4970,14 +4970,25 @@ export namespace Prisma {
 
   export type AggregateProject = {
     _count: ProjectCountAggregateOutputType | null
+    _avg: ProjectAvgAggregateOutputType | null
+    _sum: ProjectSumAggregateOutputType | null
     _min: ProjectMinAggregateOutputType | null
     _max: ProjectMaxAggregateOutputType | null
+  }
+
+  export type ProjectAvgAggregateOutputType = {
+    percentage: number | null
+  }
+
+  export type ProjectSumAggregateOutputType = {
+    percentage: number | null
   }
 
   export type ProjectMinAggregateOutputType = {
     id: string | null
     name: string | null
     description: string | null
+    percentage: number | null
     ownerId: string | null
     createdAt: Date | null
   }
@@ -4986,6 +4997,7 @@ export namespace Prisma {
     id: string | null
     name: string | null
     description: string | null
+    percentage: number | null
     ownerId: string | null
     createdAt: Date | null
   }
@@ -4994,16 +5006,26 @@ export namespace Prisma {
     id: number
     name: number
     description: number
+    percentage: number
     ownerId: number
     createdAt: number
     _all: number
   }
 
 
+  export type ProjectAvgAggregateInputType = {
+    percentage?: true
+  }
+
+  export type ProjectSumAggregateInputType = {
+    percentage?: true
+  }
+
   export type ProjectMinAggregateInputType = {
     id?: true
     name?: true
     description?: true
+    percentage?: true
     ownerId?: true
     createdAt?: true
   }
@@ -5012,6 +5034,7 @@ export namespace Prisma {
     id?: true
     name?: true
     description?: true
+    percentage?: true
     ownerId?: true
     createdAt?: true
   }
@@ -5020,6 +5043,7 @@ export namespace Prisma {
     id?: true
     name?: true
     description?: true
+    percentage?: true
     ownerId?: true
     createdAt?: true
     _all?: true
@@ -5063,6 +5087,18 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
+     * Select which fields to average
+    **/
+    _avg?: ProjectAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ProjectSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
      * Select which fields to find the minimum value
     **/
     _min?: ProjectMinAggregateInputType
@@ -5093,6 +5129,8 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: ProjectCountAggregateInputType | true
+    _avg?: ProjectAvgAggregateInputType
+    _sum?: ProjectSumAggregateInputType
     _min?: ProjectMinAggregateInputType
     _max?: ProjectMaxAggregateInputType
   }
@@ -5101,9 +5139,12 @@ export namespace Prisma {
     id: string
     name: string
     description: string
+    percentage: number
     ownerId: string
     createdAt: Date
     _count: ProjectCountAggregateOutputType | null
+    _avg: ProjectAvgAggregateOutputType | null
+    _sum: ProjectSumAggregateOutputType | null
     _min: ProjectMinAggregateOutputType | null
     _max: ProjectMaxAggregateOutputType | null
   }
@@ -5126,6 +5167,7 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     description?: boolean
+    percentage?: boolean
     ownerId?: boolean
     createdAt?: boolean
     owner?: boolean | TeamDefaultArgs<ExtArgs>
@@ -5137,6 +5179,7 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     description?: boolean
+    percentage?: boolean
     ownerId?: boolean
     createdAt?: boolean
     owner?: boolean | TeamDefaultArgs<ExtArgs>
@@ -5146,6 +5189,7 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     description?: boolean
+    percentage?: boolean
     ownerId?: boolean
     createdAt?: boolean
     owner?: boolean | TeamDefaultArgs<ExtArgs>
@@ -5155,11 +5199,12 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     description?: boolean
+    percentage?: boolean
     ownerId?: boolean
     createdAt?: boolean
   }
 
-  export type ProjectOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "ownerId" | "createdAt", ExtArgs["result"]["project"]>
+  export type ProjectOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "description" | "percentage" | "ownerId" | "createdAt", ExtArgs["result"]["project"]>
   export type ProjectInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     owner?: boolean | TeamDefaultArgs<ExtArgs>
     tasks?: boolean | Project$tasksArgs<ExtArgs>
@@ -5182,6 +5227,7 @@ export namespace Prisma {
       id: string
       name: string
       description: string
+      percentage: number
       ownerId: string
       createdAt: Date
     }, ExtArgs["result"]["project"]>
@@ -5612,6 +5658,7 @@ export namespace Prisma {
     readonly id: FieldRef<"Project", 'String'>
     readonly name: FieldRef<"Project", 'String'>
     readonly description: FieldRef<"Project", 'String'>
+    readonly percentage: FieldRef<"Project", 'Float'>
     readonly ownerId: FieldRef<"Project", 'String'>
     readonly createdAt: FieldRef<"Project", 'DateTime'>
   }
@@ -6058,13 +6105,24 @@ export namespace Prisma {
 
   export type AggregateTask = {
     _count: TaskCountAggregateOutputType | null
+    _avg: TaskAvgAggregateOutputType | null
+    _sum: TaskSumAggregateOutputType | null
     _min: TaskMinAggregateOutputType | null
     _max: TaskMaxAggregateOutputType | null
+  }
+
+  export type TaskAvgAggregateOutputType = {
+    percentage: number | null
+  }
+
+  export type TaskSumAggregateOutputType = {
+    percentage: number | null
   }
 
   export type TaskMinAggregateOutputType = {
     id: string | null
     description: string | null
+    percentage: number | null
     memberId: string | null
     projectId: string | null
     createdAt: Date | null
@@ -6073,6 +6131,7 @@ export namespace Prisma {
   export type TaskMaxAggregateOutputType = {
     id: string | null
     description: string | null
+    percentage: number | null
     memberId: string | null
     projectId: string | null
     createdAt: Date | null
@@ -6081,6 +6140,7 @@ export namespace Prisma {
   export type TaskCountAggregateOutputType = {
     id: number
     description: number
+    percentage: number
     memberId: number
     projectId: number
     createdAt: number
@@ -6088,9 +6148,18 @@ export namespace Prisma {
   }
 
 
+  export type TaskAvgAggregateInputType = {
+    percentage?: true
+  }
+
+  export type TaskSumAggregateInputType = {
+    percentage?: true
+  }
+
   export type TaskMinAggregateInputType = {
     id?: true
     description?: true
+    percentage?: true
     memberId?: true
     projectId?: true
     createdAt?: true
@@ -6099,6 +6168,7 @@ export namespace Prisma {
   export type TaskMaxAggregateInputType = {
     id?: true
     description?: true
+    percentage?: true
     memberId?: true
     projectId?: true
     createdAt?: true
@@ -6107,6 +6177,7 @@ export namespace Prisma {
   export type TaskCountAggregateInputType = {
     id?: true
     description?: true
+    percentage?: true
     memberId?: true
     projectId?: true
     createdAt?: true
@@ -6151,6 +6222,18 @@ export namespace Prisma {
     /**
      * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
      * 
+     * Select which fields to average
+    **/
+    _avg?: TaskAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: TaskSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
      * Select which fields to find the minimum value
     **/
     _min?: TaskMinAggregateInputType
@@ -6181,6 +6264,8 @@ export namespace Prisma {
     take?: number
     skip?: number
     _count?: TaskCountAggregateInputType | true
+    _avg?: TaskAvgAggregateInputType
+    _sum?: TaskSumAggregateInputType
     _min?: TaskMinAggregateInputType
     _max?: TaskMaxAggregateInputType
   }
@@ -6188,10 +6273,13 @@ export namespace Prisma {
   export type TaskGroupByOutputType = {
     id: string
     description: string
+    percentage: number
     memberId: string | null
     projectId: string
     createdAt: Date
     _count: TaskCountAggregateOutputType | null
+    _avg: TaskAvgAggregateOutputType | null
+    _sum: TaskSumAggregateOutputType | null
     _min: TaskMinAggregateOutputType | null
     _max: TaskMaxAggregateOutputType | null
   }
@@ -6213,6 +6301,7 @@ export namespace Prisma {
   export type TaskSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     description?: boolean
+    percentage?: boolean
     memberId?: boolean
     projectId?: boolean
     createdAt?: boolean
@@ -6225,6 +6314,7 @@ export namespace Prisma {
   export type TaskSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     description?: boolean
+    percentage?: boolean
     memberId?: boolean
     projectId?: boolean
     createdAt?: boolean
@@ -6235,6 +6325,7 @@ export namespace Prisma {
   export type TaskSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     id?: boolean
     description?: boolean
+    percentage?: boolean
     memberId?: boolean
     projectId?: boolean
     createdAt?: boolean
@@ -6245,12 +6336,13 @@ export namespace Prisma {
   export type TaskSelectScalar = {
     id?: boolean
     description?: boolean
+    percentage?: boolean
     memberId?: boolean
     projectId?: boolean
     createdAt?: boolean
   }
 
-  export type TaskOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "description" | "memberId" | "projectId" | "createdAt", ExtArgs["result"]["task"]>
+  export type TaskOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "description" | "percentage" | "memberId" | "projectId" | "createdAt", ExtArgs["result"]["task"]>
   export type TaskInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     member?: boolean | Task$memberArgs<ExtArgs>
     project?: boolean | ProjectDefaultArgs<ExtArgs>
@@ -6276,6 +6368,7 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       description: string
+      percentage: number
       memberId: string | null
       projectId: string
       createdAt: Date
@@ -6707,6 +6800,7 @@ export namespace Prisma {
   interface TaskFieldRefs {
     readonly id: FieldRef<"Task", 'String'>
     readonly description: FieldRef<"Task", 'String'>
+    readonly percentage: FieldRef<"Task", 'Float'>
     readonly memberId: FieldRef<"Task", 'String'>
     readonly projectId: FieldRef<"Task", 'String'>
     readonly createdAt: FieldRef<"Task", 'DateTime'>
@@ -9367,6 +9461,7 @@ export namespace Prisma {
     id: 'id',
     name: 'name',
     description: 'description',
+    percentage: 'percentage',
     ownerId: 'ownerId',
     createdAt: 'createdAt'
   };
@@ -9377,6 +9472,7 @@ export namespace Prisma {
   export const TaskScalarFieldEnum: {
     id: 'id',
     description: 'description',
+    percentage: 'percentage',
     memberId: 'memberId',
     projectId: 'projectId',
     createdAt: 'createdAt'
@@ -9477,6 +9573,20 @@ export namespace Prisma {
    * Reference to a field of type 'Role[]'
    */
   export type ListEnumRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Role[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Float'
+   */
+  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+    
+
+
+  /**
+   * Reference to a field of type 'Float[]'
+   */
+  export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
     
 
 
@@ -9707,6 +9817,7 @@ export namespace Prisma {
     id?: StringFilter<"Project"> | string
     name?: StringFilter<"Project"> | string
     description?: StringFilter<"Project"> | string
+    percentage?: FloatFilter<"Project"> | number
     ownerId?: StringFilter<"Project"> | string
     createdAt?: DateTimeFilter<"Project"> | Date | string
     owner?: XOR<TeamScalarRelationFilter, TeamWhereInput>
@@ -9717,6 +9828,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     description?: SortOrder
+    percentage?: SortOrder
     ownerId?: SortOrder
     createdAt?: SortOrder
     owner?: TeamOrderByWithRelationInput
@@ -9730,6 +9842,7 @@ export namespace Prisma {
     NOT?: ProjectWhereInput | ProjectWhereInput[]
     name?: StringFilter<"Project"> | string
     description?: StringFilter<"Project"> | string
+    percentage?: FloatFilter<"Project"> | number
     ownerId?: StringFilter<"Project"> | string
     createdAt?: DateTimeFilter<"Project"> | Date | string
     owner?: XOR<TeamScalarRelationFilter, TeamWhereInput>
@@ -9740,11 +9853,14 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     description?: SortOrder
+    percentage?: SortOrder
     ownerId?: SortOrder
     createdAt?: SortOrder
     _count?: ProjectCountOrderByAggregateInput
+    _avg?: ProjectAvgOrderByAggregateInput
     _max?: ProjectMaxOrderByAggregateInput
     _min?: ProjectMinOrderByAggregateInput
+    _sum?: ProjectSumOrderByAggregateInput
   }
 
   export type ProjectScalarWhereWithAggregatesInput = {
@@ -9754,6 +9870,7 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"Project"> | string
     name?: StringWithAggregatesFilter<"Project"> | string
     description?: StringWithAggregatesFilter<"Project"> | string
+    percentage?: FloatWithAggregatesFilter<"Project"> | number
     ownerId?: StringWithAggregatesFilter<"Project"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Project"> | Date | string
   }
@@ -9764,6 +9881,7 @@ export namespace Prisma {
     NOT?: TaskWhereInput | TaskWhereInput[]
     id?: StringFilter<"Task"> | string
     description?: StringFilter<"Task"> | string
+    percentage?: FloatFilter<"Task"> | number
     memberId?: StringNullableFilter<"Task"> | string | null
     projectId?: StringFilter<"Task"> | string
     createdAt?: DateTimeFilter<"Task"> | Date | string
@@ -9775,6 +9893,7 @@ export namespace Prisma {
   export type TaskOrderByWithRelationInput = {
     id?: SortOrder
     description?: SortOrder
+    percentage?: SortOrder
     memberId?: SortOrderInput | SortOrder
     projectId?: SortOrder
     createdAt?: SortOrder
@@ -9789,6 +9908,7 @@ export namespace Prisma {
     OR?: TaskWhereInput[]
     NOT?: TaskWhereInput | TaskWhereInput[]
     description?: StringFilter<"Task"> | string
+    percentage?: FloatFilter<"Task"> | number
     memberId?: StringNullableFilter<"Task"> | string | null
     projectId?: StringFilter<"Task"> | string
     createdAt?: DateTimeFilter<"Task"> | Date | string
@@ -9800,12 +9920,15 @@ export namespace Prisma {
   export type TaskOrderByWithAggregationInput = {
     id?: SortOrder
     description?: SortOrder
+    percentage?: SortOrder
     memberId?: SortOrderInput | SortOrder
     projectId?: SortOrder
     createdAt?: SortOrder
     _count?: TaskCountOrderByAggregateInput
+    _avg?: TaskAvgOrderByAggregateInput
     _max?: TaskMaxOrderByAggregateInput
     _min?: TaskMinOrderByAggregateInput
+    _sum?: TaskSumOrderByAggregateInput
   }
 
   export type TaskScalarWhereWithAggregatesInput = {
@@ -9814,6 +9937,7 @@ export namespace Prisma {
     NOT?: TaskScalarWhereWithAggregatesInput | TaskScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Task"> | string
     description?: StringWithAggregatesFilter<"Task"> | string
+    percentage?: FloatWithAggregatesFilter<"Task"> | number
     memberId?: StringNullableWithAggregatesFilter<"Task"> | string | null
     projectId?: StringWithAggregatesFilter<"Task"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Task"> | Date | string
@@ -10133,6 +10257,7 @@ export namespace Prisma {
     id?: string
     name: string
     description: string
+    percentage?: number
     createdAt?: Date | string
     owner: TeamCreateNestedOneWithoutProjectsInput
     tasks?: TaskCreateNestedManyWithoutProjectInput
@@ -10142,6 +10267,7 @@ export namespace Prisma {
     id?: string
     name: string
     description: string
+    percentage?: number
     ownerId: string
     createdAt?: Date | string
     tasks?: TaskUncheckedCreateNestedManyWithoutProjectInput
@@ -10151,6 +10277,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    percentage?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     owner?: TeamUpdateOneRequiredWithoutProjectsNestedInput
     tasks?: TaskUpdateManyWithoutProjectNestedInput
@@ -10160,6 +10287,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    percentage?: FloatFieldUpdateOperationsInput | number
     ownerId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     tasks?: TaskUncheckedUpdateManyWithoutProjectNestedInput
@@ -10169,6 +10297,7 @@ export namespace Prisma {
     id?: string
     name: string
     description: string
+    percentage?: number
     ownerId: string
     createdAt?: Date | string
   }
@@ -10177,6 +10306,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    percentage?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -10184,6 +10314,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    percentage?: FloatFieldUpdateOperationsInput | number
     ownerId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -10191,6 +10322,7 @@ export namespace Prisma {
   export type TaskCreateInput = {
     id?: string
     description: string
+    percentage?: number
     createdAt?: Date | string
     member?: UserCreateNestedOneWithoutTasksInput
     project: ProjectCreateNestedOneWithoutTasksInput
@@ -10200,6 +10332,7 @@ export namespace Prisma {
   export type TaskUncheckedCreateInput = {
     id?: string
     description: string
+    percentage?: number
     memberId?: string | null
     projectId: string
     createdAt?: Date | string
@@ -10209,6 +10342,7 @@ export namespace Prisma {
   export type TaskUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    percentage?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     member?: UserUpdateOneWithoutTasksNestedInput
     project?: ProjectUpdateOneRequiredWithoutTasksNestedInput
@@ -10218,6 +10352,7 @@ export namespace Prisma {
   export type TaskUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    percentage?: FloatFieldUpdateOperationsInput | number
     memberId?: NullableStringFieldUpdateOperationsInput | string | null
     projectId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10227,6 +10362,7 @@ export namespace Prisma {
   export type TaskCreateManyInput = {
     id?: string
     description: string
+    percentage?: number
     memberId?: string | null
     projectId: string
     createdAt?: Date | string
@@ -10235,12 +10371,14 @@ export namespace Prisma {
   export type TaskUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    percentage?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type TaskUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    percentage?: FloatFieldUpdateOperationsInput | number
     memberId?: NullableStringFieldUpdateOperationsInput | string | null
     projectId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10616,18 +10754,35 @@ export namespace Prisma {
     _max?: NestedEnumRoleFilter<$PrismaModel>
   }
 
+  export type FloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
   export type ProjectCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
     description?: SortOrder
+    percentage?: SortOrder
     ownerId?: SortOrder
     createdAt?: SortOrder
+  }
+
+  export type ProjectAvgOrderByAggregateInput = {
+    percentage?: SortOrder
   }
 
   export type ProjectMaxOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
     description?: SortOrder
+    percentage?: SortOrder
     ownerId?: SortOrder
     createdAt?: SortOrder
   }
@@ -10636,8 +10791,29 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     description?: SortOrder
+    percentage?: SortOrder
     ownerId?: SortOrder
     createdAt?: SortOrder
+  }
+
+  export type ProjectSumOrderByAggregateInput = {
+    percentage?: SortOrder
+  }
+
+  export type FloatWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedFloatFilter<$PrismaModel>
+    _min?: NestedFloatFilter<$PrismaModel>
+    _max?: NestedFloatFilter<$PrismaModel>
   }
 
   export type UserNullableScalarRelationFilter = {
@@ -10663,14 +10839,20 @@ export namespace Prisma {
   export type TaskCountOrderByAggregateInput = {
     id?: SortOrder
     description?: SortOrder
+    percentage?: SortOrder
     memberId?: SortOrder
     projectId?: SortOrder
     createdAt?: SortOrder
   }
 
+  export type TaskAvgOrderByAggregateInput = {
+    percentage?: SortOrder
+  }
+
   export type TaskMaxOrderByAggregateInput = {
     id?: SortOrder
     description?: SortOrder
+    percentage?: SortOrder
     memberId?: SortOrder
     projectId?: SortOrder
     createdAt?: SortOrder
@@ -10679,9 +10861,14 @@ export namespace Prisma {
   export type TaskMinOrderByAggregateInput = {
     id?: SortOrder
     description?: SortOrder
+    percentage?: SortOrder
     memberId?: SortOrder
     projectId?: SortOrder
     createdAt?: SortOrder
+  }
+
+  export type TaskSumOrderByAggregateInput = {
+    percentage?: SortOrder
   }
 
   export type BoolFilter<$PrismaModel = never> = {
@@ -11150,6 +11337,14 @@ export namespace Prisma {
     connect?: TaskWhereUniqueInput | TaskWhereUniqueInput[]
   }
 
+  export type FloatFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
   export type TeamUpdateOneRequiredWithoutProjectsNestedInput = {
     create?: XOR<TeamCreateWithoutProjectsInput, TeamUncheckedCreateWithoutProjectsInput>
     connectOrCreate?: TeamCreateOrConnectWithoutProjectsInput
@@ -11434,6 +11629,33 @@ export namespace Prisma {
     _max?: NestedEnumRoleFilter<$PrismaModel>
   }
 
+  export type NestedFloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
+  export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedFloatFilter<$PrismaModel>
+    _min?: NestedFloatFilter<$PrismaModel>
+    _max?: NestedFloatFilter<$PrismaModel>
+  }
+
   export type NestedBoolFilter<$PrismaModel = never> = {
     equals?: boolean | BooleanFieldRefInput<$PrismaModel>
     not?: NestedBoolFilter<$PrismaModel> | boolean
@@ -11519,6 +11741,7 @@ export namespace Prisma {
   export type TaskCreateWithoutMemberInput = {
     id?: string
     description: string
+    percentage?: number
     createdAt?: Date | string
     project: ProjectCreateNestedOneWithoutTasksInput
     subTasks?: SubTaskCreateNestedManyWithoutTaskInput
@@ -11527,6 +11750,7 @@ export namespace Prisma {
   export type TaskUncheckedCreateWithoutMemberInput = {
     id?: string
     description: string
+    percentage?: number
     projectId: string
     createdAt?: Date | string
     subTasks?: SubTaskUncheckedCreateNestedManyWithoutTaskInput
@@ -11645,6 +11869,7 @@ export namespace Prisma {
     NOT?: TaskScalarWhereInput | TaskScalarWhereInput[]
     id?: StringFilter<"Task"> | string
     description?: StringFilter<"Task"> | string
+    percentage?: FloatFilter<"Task"> | number
     memberId?: StringNullableFilter<"Task"> | string | null
     projectId?: StringFilter<"Task"> | string
     createdAt?: DateTimeFilter<"Task"> | Date | string
@@ -11734,6 +11959,7 @@ export namespace Prisma {
     id?: string
     name: string
     description: string
+    percentage?: number
     createdAt?: Date | string
     tasks?: TaskCreateNestedManyWithoutProjectInput
   }
@@ -11742,6 +11968,7 @@ export namespace Prisma {
     id?: string
     name: string
     description: string
+    percentage?: number
     createdAt?: Date | string
     tasks?: TaskUncheckedCreateNestedManyWithoutProjectInput
   }
@@ -11856,6 +12083,7 @@ export namespace Prisma {
     id?: StringFilter<"Project"> | string
     name?: StringFilter<"Project"> | string
     description?: StringFilter<"Project"> | string
+    percentage?: FloatFilter<"Project"> | number
     ownerId?: StringFilter<"Project"> | string
     createdAt?: DateTimeFilter<"Project"> | Date | string
   }
@@ -12014,6 +12242,7 @@ export namespace Prisma {
   export type TaskCreateWithoutProjectInput = {
     id?: string
     description: string
+    percentage?: number
     createdAt?: Date | string
     member?: UserCreateNestedOneWithoutTasksInput
     subTasks?: SubTaskCreateNestedManyWithoutTaskInput
@@ -12022,6 +12251,7 @@ export namespace Prisma {
   export type TaskUncheckedCreateWithoutProjectInput = {
     id?: string
     description: string
+    percentage?: number
     memberId?: string | null
     createdAt?: Date | string
     subTasks?: SubTaskUncheckedCreateNestedManyWithoutTaskInput
@@ -12113,6 +12343,7 @@ export namespace Prisma {
     id?: string
     name: string
     description: string
+    percentage?: number
     createdAt?: Date | string
     owner: TeamCreateNestedOneWithoutProjectsInput
   }
@@ -12121,6 +12352,7 @@ export namespace Prisma {
     id?: string
     name: string
     description: string
+    percentage?: number
     ownerId: string
     createdAt?: Date | string
   }
@@ -12202,6 +12434,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    percentage?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     owner?: TeamUpdateOneRequiredWithoutProjectsNestedInput
   }
@@ -12210,6 +12443,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    percentage?: FloatFieldUpdateOperationsInput | number
     ownerId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -12244,6 +12478,7 @@ export namespace Prisma {
   export type TaskCreateWithoutSubTasksInput = {
     id?: string
     description: string
+    percentage?: number
     createdAt?: Date | string
     member?: UserCreateNestedOneWithoutTasksInput
     project: ProjectCreateNestedOneWithoutTasksInput
@@ -12252,6 +12487,7 @@ export namespace Prisma {
   export type TaskUncheckedCreateWithoutSubTasksInput = {
     id?: string
     description: string
+    percentage?: number
     memberId?: string | null
     projectId: string
     createdAt?: Date | string
@@ -12276,6 +12512,7 @@ export namespace Prisma {
   export type TaskUpdateWithoutSubTasksInput = {
     id?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    percentage?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     member?: UserUpdateOneWithoutTasksNestedInput
     project?: ProjectUpdateOneRequiredWithoutTasksNestedInput
@@ -12284,6 +12521,7 @@ export namespace Prisma {
   export type TaskUncheckedUpdateWithoutSubTasksInput = {
     id?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    percentage?: FloatFieldUpdateOperationsInput | number
     memberId?: NullableStringFieldUpdateOperationsInput | string | null
     projectId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -12417,6 +12655,7 @@ export namespace Prisma {
   export type TaskCreateManyMemberInput = {
     id?: string
     description: string
+    percentage?: number
     projectId: string
     createdAt?: Date | string
   }
@@ -12478,6 +12717,7 @@ export namespace Prisma {
   export type TaskUpdateWithoutMemberInput = {
     id?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    percentage?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     project?: ProjectUpdateOneRequiredWithoutTasksNestedInput
     subTasks?: SubTaskUpdateManyWithoutTaskNestedInput
@@ -12486,6 +12726,7 @@ export namespace Prisma {
   export type TaskUncheckedUpdateWithoutMemberInput = {
     id?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    percentage?: FloatFieldUpdateOperationsInput | number
     projectId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     subTasks?: SubTaskUncheckedUpdateManyWithoutTaskNestedInput
@@ -12494,6 +12735,7 @@ export namespace Prisma {
   export type TaskUncheckedUpdateManyWithoutMemberInput = {
     id?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    percentage?: FloatFieldUpdateOperationsInput | number
     projectId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -12536,6 +12778,7 @@ export namespace Prisma {
     id?: string
     name: string
     description: string
+    percentage?: number
     createdAt?: Date | string
   }
 
@@ -12573,6 +12816,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    percentage?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     tasks?: TaskUpdateManyWithoutProjectNestedInput
   }
@@ -12581,6 +12825,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    percentage?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     tasks?: TaskUncheckedUpdateManyWithoutProjectNestedInput
   }
@@ -12589,6 +12834,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    percentage?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -12622,6 +12868,7 @@ export namespace Prisma {
   export type TaskCreateManyProjectInput = {
     id?: string
     description: string
+    percentage?: number
     memberId?: string | null
     createdAt?: Date | string
   }
@@ -12629,6 +12876,7 @@ export namespace Prisma {
   export type TaskUpdateWithoutProjectInput = {
     id?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    percentage?: FloatFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     member?: UserUpdateOneWithoutTasksNestedInput
     subTasks?: SubTaskUpdateManyWithoutTaskNestedInput
@@ -12637,6 +12885,7 @@ export namespace Prisma {
   export type TaskUncheckedUpdateWithoutProjectInput = {
     id?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    percentage?: FloatFieldUpdateOperationsInput | number
     memberId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     subTasks?: SubTaskUncheckedUpdateManyWithoutTaskNestedInput
@@ -12645,6 +12894,7 @@ export namespace Prisma {
   export type TaskUncheckedUpdateManyWithoutProjectInput = {
     id?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
+    percentage?: FloatFieldUpdateOperationsInput | number
     memberId?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

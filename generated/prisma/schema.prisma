@@ -59,6 +59,7 @@ model Project {
   id          String @id @default(cuid())
   name        String
   description String
+  percentage  Float  @default(0)
 
   owner   Team   @relation(fields: [ownerId], references: [id], onDelete: Cascade)
   ownerId String @map("owner_id")
@@ -73,6 +74,7 @@ model Project {
 model Task {
   id          String @id @default(cuid())
   description String
+  percentage  Float  @default(0)
 
   member   User?   @relation(fields: [memberId], references: [id], onDelete: SetNull)
   memberId String? @map("member_id")

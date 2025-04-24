@@ -144,6 +144,7 @@ exports.Prisma.ProjectScalarFieldEnum = {
   id: 'id',
   name: 'name',
   description: 'description',
+  percentage: 'percentage',
   ownerId: 'ownerId',
   createdAt: 'createdAt'
 };
@@ -151,6 +152,7 @@ exports.Prisma.ProjectScalarFieldEnum = {
 exports.Prisma.TaskScalarFieldEnum = {
   id: 'id',
   description: 'description',
+  percentage: 'percentage',
   memberId: 'memberId',
   projectId: 'projectId',
   createdAt: 'createdAt'
