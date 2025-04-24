@@ -1,0 +1,5 @@
+-- AlterTable
+ALTER TABLE "projects" ADD COLUMN     "percentage" DOUBLE PRECISION NOT NULL DEFAULT 0;
+
+-- AlterTable
+ALTER TABLE "tasks" ADD COLUMN     "percentage" DOUBLE PRECISION NOT NULL DEFAULT 0;
