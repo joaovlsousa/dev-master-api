@@ -4,6 +4,7 @@ import { z } from 'zod'
 
 import { auth } from '@/http/middlewares/auth'
 import { prisma } from '@/lib/prisma'
+import { BadRequestError } from '../_errors/bad-request-error'
 
 export async function createTask(app: FastifyInstance) {
   app
@@ -35,6 +36,19 @@ export async function createTask(app: FastifyInstance) {
         const { memberId, description, subTasks } = request.body
 
         await request.verifyUserIsTeamOwner(teamId)
+
+        const isTeamMember = await prisma.member.findUnique({
+          where: {
+            teamId_userId: {
+              teamId,
+              userId: memberId,
+            },
+          },
+        })
+
+        if (!isTeamMember) {
+          throw new BadRequestError('Este usuário não faz parte do time')
+        }
 
         const task = await prisma.task.create({
           data: {
