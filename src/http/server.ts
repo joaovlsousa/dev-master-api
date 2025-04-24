@@ -20,6 +20,7 @@ import { getProject } from './routes/projects/get-project'
 import { getProjects } from './routes/projects/get-projects'
 import { updateProject } from './routes/projects/update-project'
 import { createTask } from './routes/tasks/create-task'
+import { getTask } from './routes/tasks/get-task'
 import { getTasks } from './routes/tasks/get-tasks'
 import { updateTask } from './routes/tasks/update-task'
 import { createTeam } from './routes/teams/create-team'
@@ -76,6 +77,7 @@ app.register(updateProject)
 app.register(createTask)
 app.register(updateTask)
 app.register(getTasks)
+app.register(getTask)
 
 app.listen({ port: env.PORT, host: '0.0.0.0' }).then(() => {
   console.log('HTTP server running!')
