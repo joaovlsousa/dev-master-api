@@ -4,6 +4,7 @@ import { z } from 'zod'
 
 import { auth } from '@/http/middlewares/auth'
 import { prisma } from '@/lib/prisma'
+import { updateTaskPercentage } from '@/utils/update-task-percentage'
 import { BadRequestError } from '../_errors/bad-request-error'
 
 export async function createSubTask(app: FastifyInstance) {
@@ -50,6 +51,8 @@ export async function createSubTask(app: FastifyInstance) {
         await prisma.subTask.createMany({
           data: subTasksToPrisma,
         })
+
+        await updateTaskPercentage(taskId)
 
         return reply.status(201).send()
       }
