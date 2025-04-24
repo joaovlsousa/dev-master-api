@@ -9,7 +9,7 @@ export async function updateTask(app: FastifyInstance) {
   app
     .withTypeProvider<ZodTypeProvider>()
     .register(auth)
-    .post(
+    .put(
       '/teams/:teamId/projects/:projectId/tasks/:taskId',
       {
         schema: {
