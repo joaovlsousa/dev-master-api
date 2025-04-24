@@ -26,6 +26,7 @@ import { deleteTask } from './routes/tasks/delete-task'
 import { getSubTasks } from './routes/tasks/get-sub-tasks'
 import { getTask } from './routes/tasks/get-task'
 import { getTasks } from './routes/tasks/get-tasks'
+import { updateSubTask } from './routes/tasks/update-sub-task'
 import { updateTask } from './routes/tasks/update-task'
 import { createTeam } from './routes/teams/create-team'
 import { deleteTeam } from './routes/teams/delete-team'
@@ -86,6 +87,7 @@ app.register(deleteTask)
 
 app.register(createSubTask)
 app.register(getSubTasks)
+app.register(updateSubTask)
 app.register(deleteSubTask)
 
 app.listen({ port: env.PORT, host: '0.0.0.0' }).then(() => {
