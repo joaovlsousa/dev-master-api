@@ -3,8 +3,9 @@ import type { ZodTypeProvider } from 'fastify-type-provider-zod'
 import { z } from 'zod'
 
 import { auth } from '@/http/middlewares/auth'
+import { BadRequestError } from '@/http/routes/_errors/bad-request-error'
 import { prisma } from '@/lib/prisma'
-import { BadRequestError } from '../_errors/bad-request-error'
+import { updateProjectPercentage } from '@/utils/update-project-percentage'
 
 export async function createTask(app: FastifyInstance) {
   app
@@ -70,6 +71,8 @@ export async function createTask(app: FastifyInstance) {
             data: subTasksToPrisma,
           })
         }
+
+        await updateProjectPercentage(projectId)
 
         return reply.status(201).send()
       }

@@ -4,6 +4,7 @@ import { z } from 'zod'
 
 import { auth } from '@/http/middlewares/auth'
 import { prisma } from '@/lib/prisma'
+import { updateProjectPercentage } from '@/utils/update-project-percentage'
 
 export async function deleteTask(app: FastifyInstance) {
   app
@@ -27,7 +28,7 @@ export async function deleteTask(app: FastifyInstance) {
         },
       },
       async (request, reply) => {
-        const { teamId, taskId } = request.params
+        const { teamId, projectId, taskId } = request.params
 
         await request.verifyUserIsTeamOwner(teamId)
 
@@ -36,6 +37,8 @@ export async function deleteTask(app: FastifyInstance) {
             id: taskId,
           },
         })
+
+        await updateProjectPercentage(projectId)
 
         return reply.status(204).send()
       }

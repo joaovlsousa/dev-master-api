@@ -41,7 +41,7 @@ app.setErrorHandler(errorHandler)
 app.register(fastifySwagger, {
   openapi: {
     info: {
-      title: 'Dev Master API',
+      title: 'Stack Flow API',
       version: '1.0.0',
     },
     components: {
