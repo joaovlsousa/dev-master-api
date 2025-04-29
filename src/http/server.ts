@@ -16,6 +16,7 @@ import { errorHandler } from './error-handler'
 import { authenticateWithGithub } from './routes/auth/authenticate-with-github'
 import { getProfile } from './routes/auth/get-profile'
 import { createInvite } from './routes/invites/create-invite'
+import { deleteInvite } from './routes/invites/delete-invite'
 import { createProject } from './routes/projects/create-project'
 import { getProject } from './routes/projects/get-project'
 import { getProjects } from './routes/projects/get-projects'
@@ -92,6 +93,7 @@ app.register(updateSubTask)
 app.register(deleteSubTask)
 
 app.register(createInvite)
+app.register(deleteInvite)
 
 app.listen({ port: env.PORT, host: '0.0.0.0' }).then(() => {
   console.log('HTTP server running!')
