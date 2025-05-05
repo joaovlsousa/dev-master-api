@@ -13,7 +13,7 @@ model User {
   name      String?
   email     String   @unique
   avatarUrl String   @map("avatar_url")
-  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+  createdAt DateTime @default(now()) @map("created_at")
 
   teams   Team[]
   members Member[]
@@ -30,7 +30,7 @@ model Team {
   owner   User   @relation(fields: [ownerId], references: [id], onDelete: Cascade)
   ownerId String @map("owner_id")
 
-  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+  createdAt DateTime @default(now()) @map("created_at")
 
   members  Member[]
   projects Project[]
@@ -49,7 +49,7 @@ model Member {
   team   Team   @relation(fields: [teamId], references: [id], onDelete: Cascade)
   teamId String @map("team_id")
 
-  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+  createdAt DateTime @default(now()) @map("created_at")
 
   @@unique([teamId, userId])
   @@map("members")
@@ -64,7 +64,7 @@ model Project {
   owner   Team   @relation(fields: [ownerId], references: [id], onDelete: Cascade)
   ownerId String @map("owner_id")
 
-  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+  createdAt DateTime @default(now()) @map("created_at")
 
   tasks Task[]
 
@@ -82,7 +82,7 @@ model Task {
   project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
   projectId String  @map("project_id")
 
-  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+  createdAt DateTime @default(now()) @map("created_at")
 
   subTasks SubTask[]
 
@@ -92,12 +92,12 @@ model Task {
 model SubTask {
   id          String  @id @default(cuid())
   description String
-  isDone      Boolean @default(false)
+  isDone      Boolean @default(false) @map("is_done")
 
   task   Task   @relation(fields: [taskId], references: [id], onDelete: Cascade)
   taskId String @map("task_id")
 
-  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+  createdAt DateTime @default(now()) @map("created_at")
 
   @@map("sub_tasks")
 }
@@ -114,7 +114,7 @@ model Invite {
   team   Team   @relation(fields: [teamId], references: [id], onDelete: Cascade)
   teamId String @map("team_id")
 
-  createdAt DateTime @default(now()) @map("created_at") @db.Timestamptz(3)
+  createdAt DateTime @default(now()) @map("created_at")
 
   @@unique([guestEmail, teamId])
   @@index([guestEmail])
