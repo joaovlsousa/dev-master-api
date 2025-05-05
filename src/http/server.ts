@@ -15,8 +15,12 @@ import { env } from '@/config/env'
 import { errorHandler } from './error-handler'
 import { authenticateWithGithub } from './routes/auth/authenticate-with-github'
 import { getProfile } from './routes/auth/get-profile'
+import { acceptInvite } from './routes/invites/accept-invite'
 import { createInvite } from './routes/invites/create-invite'
 import { deleteInvite } from './routes/invites/delete-invite'
+import { getTeamInvites } from './routes/invites/get-team-invites'
+import { getUserInvites } from './routes/invites/get-user-invites'
+import { rejectInvite } from './routes/invites/reject-invite'
 import { createProject } from './routes/projects/create-project'
 import { getProject } from './routes/projects/get-project'
 import { getProjects } from './routes/projects/get-projects'
@@ -93,6 +97,10 @@ app.register(updateSubTask)
 app.register(deleteSubTask)
 
 app.register(createInvite)
+app.register(acceptInvite)
+app.register(rejectInvite)
+app.register(getUserInvites)
+app.register(getTeamInvites)
 app.register(deleteInvite)
 
 app.listen({ port: env.PORT, host: '0.0.0.0' }).then(() => {
