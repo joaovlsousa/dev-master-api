@@ -20,7 +20,9 @@ export async function createTeam(app: FastifyInstance) {
             name: z.string(),
           }),
           response: {
-            201: z.null(),
+            201: z.object({
+              teamId: z.string().cuid(),
+            }),
           },
         },
       },
@@ -46,7 +48,7 @@ export async function createTeam(app: FastifyInstance) {
           },
         })
 
-        return reply.status(201).send()
+        return reply.status(201).send({ teamId: team.id })
       }
     )
 }

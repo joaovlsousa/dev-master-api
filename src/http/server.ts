@@ -36,6 +36,7 @@ import { updateSubTask } from './routes/tasks/update-sub-task'
 import { updateTask } from './routes/tasks/update-task'
 import { createTeam } from './routes/teams/create-team'
 import { deleteTeam } from './routes/teams/delete-team'
+import { getTeam } from './routes/teams/get-team'
 import { getTeams } from './routes/teams/get-teams'
 
 const app = fastify().withTypeProvider<ZodTypeProvider>()
@@ -71,13 +72,17 @@ app.register(fastifyJwt, {
   secret: env.JWT_SECRET,
 })
 
-app.register(fastifyCors)
+app.register(fastifyCors, {
+  origin: '*',
+  methods: ['GET', 'PUT', 'PATCH', 'POST', 'DELETE'],
+})
 
 app.register(authenticateWithGithub)
 app.register(getProfile)
 
 app.register(createTeam)
 app.register(getTeams)
+app.register(getTeam)
 app.register(deleteTeam)
 
 app.register(createProject)
